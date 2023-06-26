@@ -9,15 +9,24 @@ async function Api() {
     const direct = await respo.json()
     console.log(direct);
     console.log(movie);
-    section.innerHTML = `<div class="cartInfo">
-                            <h1>${movie.title}</h1>
-                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt=""> 
+    section.innerHTML = `<div class="InfoMovieCart">
+    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="" width="400px"> 
+
+                     <div class="textMovieInfo">      
+                     <div class="titleInfo">
+                     <h1>${movie.title}</h1>
+                    <hr>
+                     
+                        </div>
+                        <div
                         <p>Fecha de estreno: ${movie.release_date}</p>
                         <p>Duracion: ${movie.runtime} minutos</p>
-                        <p>Director: ${direct.crew[5].name}.</p>
+                        <p>Director: ${direct.crew[5].name}.</p></div>
+                       <div> 
                         <h3>Sinopsis</h3>
                         <p>
-                         ${movie.overview                        }</p>
+                         ${movie.overview                        }</p></div>
+                            </div>
                             </div>
 `
 }

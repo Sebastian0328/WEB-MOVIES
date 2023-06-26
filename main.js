@@ -1,6 +1,7 @@
 const movie = document.querySelector("#searchMovie")
 const form = document.querySelector('form')
 const section = document.querySelector("section")
+const home =document.querySelector(".texAndImg")
 async function popularMovies() {
     const response = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=b581a626b3628ed86a8901a2c73f4a31")
     const movies = await response.json();
@@ -10,15 +11,31 @@ async function popularMovies() {
         section.innerHTML += `<div class="cart">
         <a href="./movie.html?id=${e.id}">
         <img src="https://image.tmdb.org/t/p/w500${e.poster_path
-            }" alt="" width=250px>
-        <h1>${e.original_title}</h1>
+            }" alt="" width=250px >
+        <h3>${e.original_title}</h3>
         <p>${e.release_date}</p>
-        </a> 
-        <button class="addFavorite">favoritos</button>
+        </a>
+        <button class="addFavorite"><img src="./imagenes/icono-de-favoritos.png" alt=""  width="20px" > favoritos</button>
     </div>`
 
 
     })
+
+// const swiper =new Swiper(".section",{
+//     efecct: "coverflow",
+//     grabCursor: true,
+//     centerendslides:true,
+//     slidesPerView:"auto",
+//     coverflowEffect:{
+//         rotate:15,
+//         strech:0,
+//         depth:300,
+//         modifler:1,
+//         slideShadows: true,
+//     },
+//     loop:true,
+// });
+
 
     const buttonsM = document.querySelectorAll('.addFavorite')
     const data = JSON.parse(localStorage.getItem("movies")) || []
@@ -50,7 +67,7 @@ popularMovies()
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (movie.value === "") {
-        section.innerHTML += `<div class="cart">no hay peliculas 
+        section.innerHTML += `<div class="cart">no hay peliculas
     </div`
         return
     }
@@ -58,6 +75,7 @@ form.addEventListener('submit', (event) => {
     console.log(movie.value);
 })
 async function Api(movie) {
+    home.innerHTML=""
     section.innerHTML = ''
     const apiKey = "b581a626b3628ed86a8901a2c73f4a31"
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&api_key=${apiKey}`)
@@ -94,7 +112,7 @@ async function Api(movie) {
         })
     })
 
-   
+
 }
 
 
